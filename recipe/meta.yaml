@@ -25,7 +25,6 @@ requirements:
   run:
     - python
     - pillow >=2.4.0
-    - freetype
 
 test:
   imports:
