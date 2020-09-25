@@ -22,6 +22,7 @@ requirements:
     - setuptools
     - pillow >=4.0.0
     - freetype
+    - libtiff
   run:
     - python
     - pillow >=4.0.0
