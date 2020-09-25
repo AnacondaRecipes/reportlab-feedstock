@@ -19,12 +19,12 @@ requirements:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - libtiff
   host:
     - python
     - setuptools
     - pillow >=4.0.0
     - freetype
-    - libtiff
   run:
     - python
     - pillow >=4.0.0
