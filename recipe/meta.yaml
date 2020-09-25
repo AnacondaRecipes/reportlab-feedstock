@@ -19,7 +19,7 @@ requirements:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
-    - libtiff
+    - libtiff <=4.0.10
   host:
     - python
     - setuptools
