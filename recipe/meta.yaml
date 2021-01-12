@@ -1,6 +1,6 @@
 {% set name = "reportlab" %}
-{% set version = "3.5.51" %}
-{% set sha256 = "bd1ed4d8a064e7372d46b7a23774d984c024d8bb0c2ff3283d5213749b9ffa1c" %}
+{% set version = "3.5.59" %}
+{% set sha256 = "a755cca2dcf023130b03bb671670301a992157d5c3151d838c0b68ef89894536" %}
 
 package:
   name: {{ name|lower }}
@@ -16,6 +16,7 @@ build:
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
     - {{ compiler('c') }}
     - libtiff <=4.0.10
   host:
