@@ -2,6 +2,7 @@
 {% set version = "3.5.65" %}
 {% set sha256 = "b2c7eedb4d19db63301c27ad1076086a099fd4c8ca0a6f62f6e9ed749fa5908f" %}
 
+
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -18,7 +19,7 @@ requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - {{ compiler('c') }}
-    - libtiff <=4.0.10
+    - libtiff >=4.2.0
   host:
     - python
     - setuptools
