@@ -21,12 +21,12 @@ requirements:
     - {{ compiler('c') }}
     - libtiff >=4.2.0
   host:
-    - python >=2.7|>=3.6,<4
+    - python
     - setuptools
     - pillow >=4.0.0
     - freetype
   run:
-    - python >=2.7|>=3.6,<4
+    - python
     - pillow >=4.0.0
 
 test:
