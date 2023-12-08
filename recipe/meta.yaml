@@ -1,6 +1,6 @@
 {% set name = "reportlab" %}
-{% set version = "3.6.12" %}
-{% set sha256 = "b13cebf4e397bba14542bcd023338b6ff2c151a3a12aabca89eecbf972cb361a" %}
+{% set version = "3.6.13" %}
+{% set sha256 = "6f75d33f7a3720cf47371ab63ced0f0ebd1aeb6db19386ae92f8977a09be9611" %}
 
 
 package:
@@ -15,7 +15,7 @@ source:
 build:
   number: 0
   skip: true  # [py<37]
-  script: {{PYTHON}} -m pip install . --no-deps -vv
+  script: {{PYTHON}} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   build:
@@ -57,7 +57,7 @@ about:
   description: |
     The ReportLab Toolkit. An Open Source Python library for generating PDFs and graphics.
   doc_url: https://docs.reportlab.com/
-  dev_url: https://github.com/MrBitBucket/reportlab-mirror
+  dev_url: https://hg.reportlab.com/hg-public/reportlab
 
 extra:
   recipe-maintainers:
