@@ -9,22 +9,18 @@ source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/reportlab-{{ version }}.tar.gz
   sha256: 073b0975dab69536acd3251858e6b0524ed3e087e71f1d0d1895acb50acf9c7b
 
-
 build:
   number: 0
   skip: true  # [py<37]
 
 requirements:
-  build:
-    - {{ compiler('c') }}
-    - {{ stdlib('c') }}
   host:
     - python
     - setuptools
     - pip
     - wheel
     - charset-normalizer 3.3.2 # Need for tests
-    - pillow >=9 # Need for tests
+    - pillow >=9.0.0 # Need for tests
   run:
     - python
     - pillow
