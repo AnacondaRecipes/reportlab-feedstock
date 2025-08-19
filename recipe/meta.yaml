@@ -23,7 +23,7 @@ requirements:
     - pillow >=9.0.0 # Need for tests
   run:
     - python
-    - pillow
+    - pillow >=9.0.0
     - charset-normalizer
 
 test:
