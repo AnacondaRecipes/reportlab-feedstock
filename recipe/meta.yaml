@@ -49,8 +49,6 @@ test:
     - reportlab.platypus
   requires:
     - pip
-    - charset-normalizer 3.3.2 # Need for tests
-    - pillow >=9.0.0 # Need for tests
   commands:
     - pip check
     - python setup.py tests  # [unix]
