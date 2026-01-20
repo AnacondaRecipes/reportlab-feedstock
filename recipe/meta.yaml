@@ -1,17 +1,18 @@
 {% set name = "reportlab" %}
-{% set version = "4.4.3" %}
+{% set version = "4.4.7" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/reportlab-{{ version }}.tar.gz
-  sha256: 073b0975dab69536acd3251858e6b0524ed3e087e71f1d0d1895acb50acf9c7b
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 41e8287af965e5996764933f3e75e7f363c3b6f252ba172f9429e81658d7b170
 
 build:
   number: 0
-  skip: true  # [py<37]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<39]
 
 requirements:
   host:
@@ -19,14 +20,22 @@ requirements:
     - setuptools
     - pip
     - wheel
-    - charset-normalizer 3.3.2 # Need for tests
-    - pillow >=9.0.0 # Need for tests
   run:
     - python
     - pillow >=9.0.0
     - charset-normalizer
+  run_constrained:
+    - rl-accel >=0.9.0,<1.1
+    - rlpycairo >=0.2.0,<1
+    - freetype-py >=2.3.0,<2.4
+    - rl-renderpm >=4.0.3,<4.1
 
 test:
+  source_files:
+    - tests
+    - docs
+    - tools
+    - setup.py
   imports:
     - reportlab
     - reportlab.graphics.charts
@@ -42,6 +51,8 @@ test:
     - pip
   commands:
     - pip check
+    - python setup.py tests  # [unix]
+    - python setup.py tests --verbose-tests --no-download-t1-files --exclude=test_pdfgen_general --exclude=test_pdfgen_callback  # [win]
 
 about:
   home: https://docs.reportlab.com
