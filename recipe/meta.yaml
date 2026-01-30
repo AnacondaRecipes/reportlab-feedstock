@@ -16,9 +16,9 @@ build:
 
 requirements:
   host:
+    - pip
     - python
     - setuptools
-    - pip
     - wheel
   run:
     - python
