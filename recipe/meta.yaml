@@ -31,8 +31,6 @@ requirements:
     # pycairo
     - rlpycairo >=0.2.0,<1
     - freetype-py >=2.3.0,<2.4
-    # upstream `bidi` (rlbidi) and `shaping` (uharfbuzz) extras are unversioned,
-    # so a run_constrained entry would be a no-op and is intentionally omitted
 
 test:
   source_files:
