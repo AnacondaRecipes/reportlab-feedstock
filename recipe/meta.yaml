@@ -1,5 +1,5 @@
 {% set name = "reportlab" %}
-{% set version = "5.0.0" %}
+{% set version = "5.1.0" %}
 
 package:
   name: {{ name }}
@@ -7,12 +7,13 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e4494a0c6623ae213bb856fba523171b2b54a7bf629fda02d5e525a7b899a784
+  sha256: 6878200464527e87672d19e9f7cfc6bb890e3a6931e74ac6a1a8d1754aa55671
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: true  # [py<39]
+  # reportlab/__init__.py enforces __min_python_version__ = (3, 10) (3.9 is EOL upstream)
+  skip: true  # [py<310]
 
 requirements:
   host:
@@ -30,6 +31,8 @@ requirements:
     # pycairo
     - rlpycairo >=0.2.0,<1
     - freetype-py >=2.3.0,<2.4
+    # upstream `bidi` (rlbidi) and `shaping` (uharfbuzz) extras are unversioned,
+    # so a run_constrained entry would be a no-op and is intentionally omitted
 
 test:
   source_files:
@@ -52,7 +55,10 @@ test:
     - pip
   commands:
     - pip check
-    - python setup.py tests  # [unix]
+    # upstream's suite is driven by tests/runAll.py through `setup.py tests`
+    # (it needs the reportlab.lib.testutils setOutDir/testsFolder wiring);
+    # pytest mis-collects module-level test() helpers and the optional rl_accel tests
+    - python setup.py tests --verbose-tests  # [unix]
     - python setup.py tests --verbose-tests --no-download-t1-files --exclude=test_pdfgen_general --exclude=test_pdfgen_callback  # [win]
 
 about:
