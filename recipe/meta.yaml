@@ -75,3 +75,8 @@ about:
 extra:
   recipe-maintainers:
     - mcs07
+  skip-lints:
+    # reportlab's site (Cloudflare) and hg serve 520/403 to the linter's egress only:
+    # www.reportlab.com and docs.reportlab.com answer 200 from a normal client, and
+    # hg.reportlab.com/hg-public/reportlab is an access-restricted repo path (root is 200)
+    - reachable_url
